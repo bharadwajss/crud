@@ -11,10 +11,10 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Entity
-@Data
+@Data // lombok library-->
 public class Employee {
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Id  /// primary key
+   @GeneratedValue(strategy = GenerationType.AUTO) //value will be auto-incremented
     private int employeeId;
     private String employeeName;
     private String designation;

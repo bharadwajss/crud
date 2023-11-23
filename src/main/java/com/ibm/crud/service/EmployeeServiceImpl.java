@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -19,6 +20,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     EmployeeRepository employeeRepository;
     @Override
     public Employee addEmployee(Employee employee) {
+        if(
+                Objects.nonNull(employee.getEmployeeName()) &&
+                "".equalsIgnoreCase(employee.getEmployeeName()))
         employeeRepository.save(employee);// in-build method called from crudrepository
         return employee;
     }
@@ -41,6 +45,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void updateEmployee(int employeeId, Employee employee) {
        Employee empDB= employeeRepository.findById(employeeId).get();
+       if(employee.getEmployeeName()!=null)/// in books
+           // if(null!=employee.getEmployeeName())// readable
        empDB.setEmployeeName(employee.getEmployeeName());
        empDB.setDesignation(employee.getDesignation());
        employeeRepository.save(empDB);
