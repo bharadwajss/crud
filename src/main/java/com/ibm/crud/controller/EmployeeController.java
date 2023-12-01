@@ -6,6 +6,8 @@ package com.ibm.crud.controller;
 
 import com.ibm.crud.entity.Employee;
 import com.ibm.crud.service.EmployeeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +17,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
     @Autowired
     EmployeeService employeeService;
    // @RequestMapping(value = "/addEmployee",method = RequestMethod.POST)
     @PostMapping("/addEmployee")// adding record
     public Employee addEmployee(@RequestBody Employee employee){
+        LOGGER.info("In a employee controller {}" , employee.getEmployeeId());
         return employeeService.addEmployee(employee);
         //return "Employee added successfully";
     }
@@ -32,6 +36,7 @@ public class EmployeeController {
     @GetMapping("/getEmployeeById/{id}")//retrieve record by empId
     public Optional<Employee> getEmployeeById(@PathVariable("id") int employeeId)
     {
+
         return employeeService.getEmployeeById(employeeId);
     }
 
