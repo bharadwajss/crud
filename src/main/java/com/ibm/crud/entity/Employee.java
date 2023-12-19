@@ -12,8 +12,9 @@ import lombok.*;
 
 @Entity
 @Data // lombok library-->
-@Getter
-@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Employee {
    @Id  /// primary key
    @GeneratedValue(strategy = GenerationType.AUTO) //value will be auto-incremented

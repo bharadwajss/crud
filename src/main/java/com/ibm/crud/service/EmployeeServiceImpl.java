@@ -17,7 +17,7 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService{
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    private  EmployeeRepository employeeRepository;
     @Override
     public Employee addEmployee(Employee employee) {
         if(
@@ -51,4 +51,16 @@ public class EmployeeServiceImpl implements EmployeeService{
        empDB.setDesignation(employee.getDesignation());
        employeeRepository.save(empDB);
     }
+
+    @Override
+    public Employee findByEmployeeName(String employeeName) {
+        return employeeRepository.findByEmployeeName(employeeName);
+    }
+
+    @Override
+    public Employee findByEmployeeNameIgnoreCase(String name) {
+        return employeeRepository.findByEmployeeNameIgnoreCase(name);
+    }
+
+
 }

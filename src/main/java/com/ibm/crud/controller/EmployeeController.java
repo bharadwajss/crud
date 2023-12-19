@@ -19,7 +19,7 @@ import java.util.Optional;
 public class EmployeeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
    // @RequestMapping(value = "/addEmployee",method = RequestMethod.POST)
     @PostMapping("/addEmployee")// adding record
     public Employee addEmployee(@RequestBody Employee employee){
@@ -36,7 +36,6 @@ public class EmployeeController {
     @GetMapping("/getEmployeeById/{id}")//retrieve record by empId
     public Optional<Employee> getEmployeeById(@PathVariable("id") int employeeId)
     {
-
         return employeeService.getEmployeeById(employeeId);
     }
 
@@ -52,4 +51,11 @@ public class EmployeeController {
         employeeService.updateEmployee(employeeId, employee);
         return "updated record successfully";
     }
+
+    @GetMapping("/findByEmpName")
+    public Employee findByemployeeName(String name)
+    {
+        return employeeService.findByEmployeeName(name);
+    }
+
 }

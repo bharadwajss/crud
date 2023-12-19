@@ -15,4 +15,7 @@ public interface EmployeeService {
     void deleteEmployee(int employeeId);
 
     void updateEmployee(int employeeId, Employee employee);
+
+    Employee findByEmployeeName(String employeeName);
+    Employee findByEmployeeNameIgnoreCase(String name);
 }
